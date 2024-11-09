@@ -4,5 +4,7 @@ import org.lsi.entities.Operation;
 public interface OperationMetier {
 public Operation saveOperation(Operation o);
 public List<Operation> listOperation();
+List<Operation> getOperationsByCompte(String codeCompte);
+
 
 } 

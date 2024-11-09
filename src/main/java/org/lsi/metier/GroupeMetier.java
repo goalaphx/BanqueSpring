@@ -5,5 +5,7 @@ import org.lsi.entities.Groupe;
 public interface GroupeMetier {
 public Groupe saveGroupe(Groupe g);
 public List<Groupe> listGroupe();
+public void affecterEmployeAuGroupe(Long codeEmploye, Long codeGroupe);
+
 
 } 
