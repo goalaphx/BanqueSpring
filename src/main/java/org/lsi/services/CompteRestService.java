@@ -16,10 +16,13 @@ public class CompteRestService {
 
 @Autowired
 private CompteMetier compteMetier;
+
 @RequestMapping(value="/comptes",method=RequestMethod.POST)
 public Compte saveCompte(@RequestBody Compte c) {
  return compteMetier.saveCompte(c);
  }
+
+
 @RequestMapping(value="/comptes",method=RequestMethod.GET)
 public List<Compte> listCompte() {
  return compteMetier.listCompte();

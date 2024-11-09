@@ -1,4 +1,5 @@
 package org.lsi.services;
+
 import java.util.List;
 
 import org.lsi.entities.Client;
@@ -13,14 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientRestService {
 
 
-@Autowired
-private ClientMetier clientMetier;
-@RequestMapping(value="/clients",method=RequestMethod.POST)
-public Client saveClient(@RequestBody Client c) {
- return clientMetier.saveClient(c);
- }
-@RequestMapping(value="/clients",method=RequestMethod.GET)
-public List<Client> listClient() {
- return clientMetier.listClient();
- }
+  @Autowired
+  private ClientMetier clientMetier;
+
+  @RequestMapping(value = "/clients", method = RequestMethod.POST)
+  public Client saveClient(@RequestBody Client c) {
+    return clientMetier.saveClient(c);
+  }
+
+  @RequestMapping(value = "/clients", method = RequestMethod.GET)
+  public List<Client> listClient() {
+    return clientMetier.listClient();
+  }
+
 }
