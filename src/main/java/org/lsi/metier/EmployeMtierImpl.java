@@ -10,14 +10,19 @@ public class EmployeMtierImpl implements EmployeMetier {
 
 @Autowired
 private EmployeRepository employeRepository;
-@Override
-public Employe saveEmploye(Employe e) {
- // TODO Auto-generated method stub
- return employeRepository.save(e);
- } 
-@Override
-public List<Employe> listEmployes() {
- // TODO Auto-generated method stub
- return employeRepository.findAll();
+
+ @Override
+ public Employe saveEmploye(Employe e) {
+  if (e.getEmployeSup() != null && e.getEmployeSup().getCodeEmploye() != null) {
+   Employe supervisor = employeRepository.findById(e.getEmployeSup().getCodeEmploye())
+           .orElseThrow(() -> new RuntimeException("Supervisor not found"));
+   e.setEmployeSup(supervisor);
+  }
+  return employeRepository.save(e);
+ }
+
+ @Override
+ public List<Employe> listEmployes() {
+  return employeRepository.findAll();
  }
 } 

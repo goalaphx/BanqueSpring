@@ -2,6 +2,7 @@ package org.lsi.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -25,6 +26,7 @@ private String nomEmploye;
 
 @ManyToOne
 @JoinColumn(name="code_emp_sup")
+@JsonBackReference // Prevent infinite recursion
 private Employe employeSup;
 @ManyToMany
 @JoinTable(name="EMP_GR")
