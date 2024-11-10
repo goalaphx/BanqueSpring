@@ -29,6 +29,11 @@ public class OperationMetierImpl implements OperationMetier {
     return operationRepository.findAll();
   }
 
+ @Override
+ public List<Operation> getOperationsByCompte(String codeCompte) {
+  return operationRepository.findByCompteCodeCompte(codeCompte);
+ }
+
   @Override
   public Boolean virementOperation(Compte sender, Compte receiver, Double montant) {
     if (montant > sender.getSolde() || montant < 0 ){

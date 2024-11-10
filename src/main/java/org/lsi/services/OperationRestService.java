@@ -28,6 +28,11 @@ public class OperationRestService {
     return operationMetier.listOperation();
   }
 
+  @RequestMapping(value = "/operations/{codeCompte}", method = RequestMethod.GET)
+  public List<Operation> getOperationsByCompte(@PathVariable String codeCompte) {
+    return operationMetier.getOperationsByCompte(codeCompte);
+  }
+
 
   @PostMapping(value = "/virement")
   public Boolean viermentOperation(@RequestBody VirementRequest virementRequest) {
