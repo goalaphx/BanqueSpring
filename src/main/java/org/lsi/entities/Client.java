@@ -16,6 +16,10 @@ private Long codeClient;
 private String nomClient;
 @OneToMany(mappedBy="client",fetch=FetchType.LAZY)
 private Collection<Compte> comptes;
+
+
+
+
 public Long getCodeClient() {
  return codeClient;
  }
@@ -41,4 +45,4 @@ public Client(String nomClient) {
 public Client() {
  super();
  }
-} 
+}
