@@ -30,4 +30,6 @@ public class ClientRestService {
     public List<Compte> getComptesByClientId(@PathVariable Long id) {
         return clientMetier.getComptesByClientId(id);
     }
+
+
 }
