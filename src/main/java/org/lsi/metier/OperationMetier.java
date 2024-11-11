@@ -10,6 +10,6 @@ public List<Operation> getOperationsByCompte(String codeCompte);
 
   public Boolean virementOperation(Compte sender , Compte receiver , Double montant);
   public Boolean retraitOperation(Compte  compte , Double montant);
-  public Boolean versementOperation(Compte compte ,  Double montant);
+  public Boolean versementOperation(String compteId , Double montant);
 
 }

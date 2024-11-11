@@ -60,10 +60,11 @@ public class OperationMetierImpl implements OperationMetier {
   }
 
   @Override
-  public Boolean versementOperation(Compte compte, Double montant) {
+  public Boolean versementOperation(String compteId, Double montant) {
     if (montant < 0 ){
       return false;
     }else {
+      Compte compte = compteRepository.getReferenceById(compteId);
       compte.setSolde(compte.getSolde() + montant);
       compteRepository.save(compte);
       return true;

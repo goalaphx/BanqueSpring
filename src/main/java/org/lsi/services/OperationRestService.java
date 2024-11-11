@@ -42,7 +42,7 @@ public class OperationRestService {
 
   @PostMapping(value = "/versement")
   public Boolean versementOperation(@RequestBody VersementRequest versementRequest) {
-    return operationMetier.versementOperation(versementRequest.getCompte()  , versementRequest.getMontant());
+    return operationMetier.versementOperation(versementRequest.getCompteId()  , versementRequest.getMontant());
   }
 
   @PostMapping(value = "/retrait")
