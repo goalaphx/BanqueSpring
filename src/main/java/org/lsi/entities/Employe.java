@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import jakarta.persistence.*;
@@ -22,9 +23,10 @@ private String nomEmploye;
 @JoinColumn(name="code_emp_sup")
 @JsonBackReference // Prevent infinite recursion
 private Employe employeSup;
-@ManyToMany
+ @ManyToMany(fetch = FetchType.EAGER)  // Ensure groups are eagerly loaded
 @JoinTable(name="EMP_GR")
-private Collection<Groupe> groupes;
+ @JsonManagedReference
+ private Collection<Groupe> groupes;
 public Employe(String nomEmploye) {
  super();
  this.nomEmploye = nomEmploye;
@@ -52,7 +54,7 @@ public Employe getEmployeSup() {
 public void setEmployeSup(Employe employeSup) {
  this.employeSup = employeSup;
  }
-@JsonIgnore
+
 public Collection<Groupe> getGroupes() {
  return groupes;
  }
