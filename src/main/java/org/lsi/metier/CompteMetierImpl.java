@@ -2,15 +2,13 @@ package org.lsi.metier;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.lsi.dao.ClientRepository;
 import org.lsi.dao.CompteRepository;
 import org.lsi.dao.EmployeRepository;
-import org.lsi.entities.Client;
-import org.lsi.entities.Compte;
-import org.lsi.entities.CompteEpargne;
-import org.lsi.entities.Employe;
+import org.lsi.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,11 +36,22 @@ public class CompteMetierImpl implements CompteMetier {
   }
 
   @Override
-  public Compte saveCompte( long solde, long clientId, long employeId) {
-    Compte compte = new CompteEpargne();
+  public Compte saveCompte(long solde, long clientId, long employeId, String type  , double var) {
+    Compte compte;
+
+    if (Objects.equals(type, "CE")) {
+      compte = new CompteEpargne();
+      ((CompteEpargne) compte).setTaux(var);
+    } else if (Objects.equals(type, "CC")) {
+      compte = new CompteCourant();
+      ((CompteCourant) compte).setDecouvert(var);
+    } else {
+      return null;
+    }
+
+
     Client client = clientRepository.findById(clientId).get();
     Employe employe = employeRepository.findById(employeId).get();
-
 
     String codeCompte = String.valueOf(new Date().getTime())+"V"+client.getCodeClient();
     compte.setCodeCompte(codeCompte);

@@ -10,5 +10,7 @@ public class AddCompteRequest {
   private long solde ;
   private long clientId ;
   private long employeeId ;
+  private String type ;
+  private double var ; //taux / decouvert
 
 }

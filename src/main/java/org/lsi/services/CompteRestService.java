@@ -17,7 +17,7 @@ public class CompteRestService {
 
     @RequestMapping(value = "/comptes", method = RequestMethod.POST)
     public Compte saveCompte(@RequestBody AddCompteRequest c) {
-        return compteMetier.saveCompte( c.getSolde() , c.getClientId() , c.getEmployeeId());
+        return compteMetier.saveCompte( c.getSolde() , c.getClientId() , c.getEmployeeId() , c.getType() , c.getVar());
     }
 
     // Méthode pour obtenir un compte
