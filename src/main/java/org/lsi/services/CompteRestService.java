@@ -2,6 +2,7 @@ package org.lsi.services;
 
 import java.util.List;
 
+import org.lsi.dto.AddCompteRequest;
 import org.lsi.entities.Compte;
 import org.lsi.metier.CompteMetier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class CompteRestService {
     private CompteMetier compteMetier;
 
     @RequestMapping(value = "/comptes", method = RequestMethod.POST)
-    public Compte saveCompte(@RequestBody Compte c) {
-        return compteMetier.saveCompte(c);
+    public Compte saveCompte(@RequestBody AddCompteRequest c) {
+        return compteMetier.saveCompte( c.getSolde() , c.getClientId() , c.getEmployeeId());
     }
 
     // Méthode pour obtenir un compte
