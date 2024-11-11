@@ -53,7 +53,15 @@ public class OperationMetierImpl implements OperationMetier {
       compteRepository.save(receiver);
       compteRepository.save(sender);
 
+      Employe employe = employeRepository.findById(employeId).get();
+      Virement virement = new Virement();
+      virement.setCompte(sender);
+      virement.setCompte(receiver);
+      virement.setEmploye(employe);
+      virement.setDateOperation(new Date());
+      virement.setMontant(montant);
 
+      operationRepository.save(virement);
 
       return true;
     }
