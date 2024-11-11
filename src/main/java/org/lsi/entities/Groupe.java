@@ -2,6 +2,8 @@ package org.lsi.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,7 +42,8 @@ public String getNomGroupe() {
 public void setNomGroupe(String nomGroupe) {
  this.nomGroupe = nomGroupe;
  }
-public Collection<Employe> getEmploye() {
+ @JsonIgnore  // This prevents recursion by ignoring 'employe' during serialization
+ public Collection<Employe> getEmploye() {
  return employe;
  }
 public void setEmploye(Collection<Employe> employe) {
