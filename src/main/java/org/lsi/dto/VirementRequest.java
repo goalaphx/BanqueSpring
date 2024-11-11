@@ -8,4 +8,6 @@ public class VirementRequest {
   private String senderId;
   private String receiverId;
   private double money;
+  private long employeId;
+
 }

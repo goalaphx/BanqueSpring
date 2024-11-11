@@ -38,18 +38,18 @@ public class OperationRestService {
 
   @PostMapping(value = "/virement")
   public Boolean viermentOperation(@RequestBody VirementRequest virementRequest) {
-     return operationMetier.virementOperation(virementRequest.getSenderId() , virementRequest.getReceiverId() , virementRequest.getMoney());
+     return operationMetier.virementOperation(virementRequest.getSenderId() , virementRequest.getReceiverId() , virementRequest.getMoney() , virementRequest.getEmployeId());
   }
 
 
   @PostMapping(value = "/versement")
   public Boolean versementOperation(@RequestBody VersementRequest versementRequest) {
-    return operationMetier.versementOperation(versementRequest.getCompteId()  , versementRequest.getMontant());
+    return operationMetier.versementOperation(versementRequest.getCompteId()  , versementRequest.getMontant() , versementRequest.getEmployeId());
   }
 
   @PostMapping(value = "/retrait")
   public Boolean retraitOperation(@RequestBody RetraitRequest retraitRequest) {
-    return operationMetier.retraitOperation(retraitRequest.getCompteId()  , retraitRequest.getMontant());
+    return operationMetier.retraitOperation(retraitRequest.getCompteId()  , retraitRequest.getMontant() , retraitRequest.getEmployeId());
   }
 
 
