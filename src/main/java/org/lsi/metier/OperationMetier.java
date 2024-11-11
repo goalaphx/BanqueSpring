@@ -8,8 +8,8 @@ public Operation saveOperation(Operation o);
 public List<Operation> listOperation();
 public List<Operation> getOperationsByCompte(String codeCompte);
 
-  public Boolean virementOperation(Compte sender , Compte receiver , Double montant);
-  public Boolean retraitOperation(Compte  compte , Double montant);
+  public Boolean virementOperation(String senderId , String receiverId , Double montant);
+  public Boolean retraitOperation(String  compteId , Double montant);
   public Boolean versementOperation(String compteId , Double montant);
 
 }

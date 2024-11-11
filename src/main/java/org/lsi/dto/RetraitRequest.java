@@ -5,6 +5,6 @@ import org.lsi.entities.Compte;
 
 @Data
 public class RetraitRequest {
-  private Compte compte ;
+  private String compteId ;
   private double montant;
 }

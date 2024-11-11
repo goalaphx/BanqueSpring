@@ -2,6 +2,8 @@ package org.lsi.services;
 
 import java.util.List;
 
+import org.lsi.dao.CompteRepository;
+import org.lsi.dao.OperationRepository;
 import org.lsi.dto.RetraitRequest;
 import org.lsi.dto.VersementRequest;
 import org.lsi.dto.VirementRequest;
@@ -36,7 +38,7 @@ public class OperationRestService {
 
   @PostMapping(value = "/virement")
   public Boolean viermentOperation(@RequestBody VirementRequest virementRequest) {
-     return operationMetier.virementOperation(virementRequest.getSender() , virementRequest.getReceiver() , virementRequest.getMoney());
+     return operationMetier.virementOperation(virementRequest.getSenderId() , virementRequest.getReceiverId() , virementRequest.getMoney());
   }
 
 
@@ -47,7 +49,7 @@ public class OperationRestService {
 
   @PostMapping(value = "/retrait")
   public Boolean retraitOperation(@RequestBody RetraitRequest retraitRequest) {
-    return operationMetier.retraitOperation(retraitRequest.getCompte()  , retraitRequest.getMontant());
+    return operationMetier.retraitOperation(retraitRequest.getCompteId()  , retraitRequest.getMontant());
   }
 
 

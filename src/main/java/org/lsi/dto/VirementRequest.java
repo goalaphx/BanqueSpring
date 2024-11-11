@@ -5,7 +5,7 @@ import org.lsi.entities.Compte;
 
 @Data
 public class VirementRequest {
-  private Compte sender;
-  private Compte receiver;
+  private String senderId;
+  private String receiverId;
   private double money;
 }

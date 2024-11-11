@@ -35,10 +35,15 @@ public class OperationMetierImpl implements OperationMetier {
  }
 
   @Override
-  public Boolean virementOperation(Compte sender, Compte receiver, Double montant) {
+  public Boolean virementOperation(String senderId, String receiverId, Double montant) {
+    Compte sender = compteRepository.findById(senderId).get();
+    Compte receiver = compteRepository.findById(receiverId).get();
+
     if (montant > sender.getSolde() || montant < 0 ){
       return false;
     }else {
+
+
       sender.setSolde(sender.getSolde() - montant);
       receiver.setSolde(receiver.getSolde() + montant);
       compteRepository.save(receiver);
@@ -48,7 +53,8 @@ public class OperationMetierImpl implements OperationMetier {
   }
 
   @Override
-  public Boolean retraitOperation(Compte compte, Double montant) {
+  public Boolean retraitOperation(String compteId, Double montant) {
+    Compte compte = compteRepository.findById(compteId).get();
     if (montant > compte.getSolde() || montant < 0){
       return false;
     }else{
@@ -64,7 +70,7 @@ public class OperationMetierImpl implements OperationMetier {
     if (montant < 0 ){
       return false;
     }else {
-      Compte compte = compteRepository.getReferenceById(compteId);
+      Compte compte = compteRepository.findById(compteId).get();
       compte.setSolde(compte.getSolde() + montant);
       compteRepository.save(compte);
       return true;
