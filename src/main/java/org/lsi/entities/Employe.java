@@ -25,6 +25,7 @@ private String nomEmploye;
 private Employe employeSup;
  @ManyToMany(fetch = FetchType.EAGER)  // Ensure groups are eagerly loaded
 @JoinTable(name="EMP_GR")
+
  private Collection<Groupe> groupes;
 public Employe(String nomEmploye) {
  super();

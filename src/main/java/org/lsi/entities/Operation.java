@@ -2,6 +2,7 @@ package org.lsi.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,10 +27,12 @@ private double montant;
 
 @ManyToOne
 @JoinColumn(name="CODE_CPTE")
+@JsonIgnore
 private Compte compte;
 
 @ManyToOne
 @JoinColumn(name="CODE_EMP")
+@JsonIgnore  // Prevent recursive serialization of employee
 private Employe employe;
 
 

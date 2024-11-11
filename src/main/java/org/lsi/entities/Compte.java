@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -35,10 +36,12 @@ public abstract class Compte implements Serializable {
 	private Client client;
 	@ManyToOne
 	@JoinColumn(name = "CODE_EMP")
+
 	private Employe employe;
 
 
 	@OneToMany(mappedBy = "compte")
+	@JsonIgnore  // Prevent recursive serialization of employee
 	private Collection<Operation> operations;
 
 	public Compte(String codeCompte, Date dateCreation, double solde) {

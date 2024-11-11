@@ -19,7 +19,6 @@ public class Client implements Serializable {
   private String nomClient;
   @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
   @JsonIgnore  // Prevents recursive serialization of 'comptes' field
-
   private Collection<Compte> comptes;
 
 
