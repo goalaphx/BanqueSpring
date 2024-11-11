@@ -25,8 +25,9 @@ public class GroupeRestService {
         return groupeMetier.listGroupe();
     }
 // methode pour affecter les employés aux groupes
-    @RequestMapping(value = "/{groupeId}/employe/{employeId}", method = RequestMethod.PUT)
-    public void assignEmployeToGroupe(@PathVariable Long groupeId, @PathVariable Long employeId) {
-        groupeMetier.affecterEmployeAuGroupe(groupeId, employeId);
-    }
+@RequestMapping(value = "/groupes/{groupeId}/employes/{employeId}", method = RequestMethod.PUT)
+public void assignEmployeToGroupe(@PathVariable Long groupeId, @PathVariable Long employeId) {
+    groupeMetier.affecterEmployeAuGroupe(employeId, groupeId);
+}
+
 }
