@@ -4,12 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Client implements Serializable {
@@ -17,7 +12,7 @@ public class Client implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long codeClient;
   private String nomClient;
-  @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JsonIgnore  // Prevents recursive serialization of 'comptes' field
   private Collection<Compte> comptes;
 

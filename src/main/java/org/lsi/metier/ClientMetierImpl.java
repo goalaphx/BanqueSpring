@@ -29,6 +29,15 @@ public class ClientMetierImpl implements ClientMetier {
   return clientRepository.findAll();
  }
 
+ @Override
+ public void deleteClient(Long codeClient) {
+  if (clientRepository.existsById(codeClient)) {
+   clientRepository.deleteById(codeClient);
+  } else {
+   throw new RuntimeException("Client not found with ID: " + codeClient);
+  }
+ }
+
 
  @Override
  public List<Compte> getComptesByClientId(Long codeClient) {
