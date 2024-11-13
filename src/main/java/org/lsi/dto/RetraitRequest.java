@@ -7,4 +7,5 @@ import org.lsi.entities.Compte;
 public class RetraitRequest {
   private String compteId ;
   private double montant;
+  private long employeId;
 }

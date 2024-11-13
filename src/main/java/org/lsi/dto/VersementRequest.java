@@ -6,4 +6,6 @@ import org.lsi.entities.Compte;
 public class VersementRequest {
   private String compteId;
   private double montant;
+  private long employeId;
+
 }

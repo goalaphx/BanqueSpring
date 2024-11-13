@@ -19,12 +19,13 @@ public class Employe implements Serializable {
 private Long codeEmploye;
 private String nomEmploye;
 
-@ManyToOne
+@ManyToOne(cascade = CascadeType.ALL)
 @JoinColumn(name="code_emp_sup")
-@JsonBackReference // Prevent infinite recursion
+@JsonBackReference// Prevent infinite recursion
 private Employe employeSup;
  @ManyToMany(fetch = FetchType.EAGER)  // Ensure groups are eagerly loaded
 @JoinTable(name="EMP_GR")
+
  private Collection<Groupe> groupes;
 public Employe(String nomEmploye) {
  super();

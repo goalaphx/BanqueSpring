@@ -4,19 +4,12 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -35,10 +28,12 @@ public abstract class Compte implements Serializable {
 	private Client client;
 	@ManyToOne
 	@JoinColumn(name = "CODE_EMP")
+
 	private Employe employe;
 
 
-	@OneToMany(mappedBy = "compte")
+	@OneToMany(mappedBy = "compte", cascade = CascadeType.ALL)
+	@JsonIgnore  // Prevent recursive serialization of employee
 	private Collection<Operation> operations;
 
 	public Compte(String codeCompte, Date dateCreation, double solde) {
